@@ -1,3 +1,5 @@
+package 生产者与消费者.非阻塞式;
+
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;

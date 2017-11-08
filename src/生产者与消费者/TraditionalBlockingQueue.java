@@ -16,7 +16,7 @@ public class TraditionalBlockingQueue<T> implements IBlockingQueue<T> {
     }
 
     public TraditionalBlockingQueue(int queueSize) {
-        if(queueSize<1){
+        if(queueSize < 1){
             throw new IllegalArgumentException("queueSize must be positive number");
         }
         this.queueSize = queueSize;
@@ -29,6 +29,7 @@ public class TraditionalBlockingQueue<T> implements IBlockingQueue<T> {
                 lock.wait();
             }
             linkedList.addLast(data);
+            System.out.println("生产线程"+Thread.currentThread().getName()+" 生产数据="+data);
             lock.notifyAll();
         }
     }
@@ -41,6 +42,8 @@ public class TraditionalBlockingQueue<T> implements IBlockingQueue<T> {
             }
 
             T t = linkedList.removeFirst();
+            System.out.println("消费线程"+Thread.currentThread().getName()+" 消费数据================================="+t);
+            lock.notifyAll();
             return t;
         }
     }
